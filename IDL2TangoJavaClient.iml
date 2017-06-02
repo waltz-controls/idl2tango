@@ -15,8 +15,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:1.3.9" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.media:jai_imageio:1.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.media:jai_core:1.1.3" level="project" />
     <orderEntry type="library" name="Maven: org.tango:ezTangORB:2.0.7" level="project" />
     <orderEntry type="library" name="Maven: org.javatuples:javatuples:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.tango.hzg:TangORB:9.2.10" level="project" />

@@ -1,5 +1,6 @@
 # IDL2TangoJavaClient
 
+[![Dependency Status](https://www.versioneye.com/user/projects/593175e722f278006540a1b6/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/593175e722f278006540a1b6)
 [![codebeat badge](https://codebeat.co/badges/a26bcfef-b0c2-4713-89d8-eaf4534588df)](https://codebeat.co/projects/github-com-xenvwpi-idl2tango-master)
 
 [ ![Download](https://api.bintray.com/packages/hzgde/maven/idl2tango/images/download.svg) ](https://bintray.com/hzgde/maven/idl2tango/_latestVersion)

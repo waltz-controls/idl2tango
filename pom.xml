@@ -31,9 +31,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>hzg.wpn.xenv</groupId>
-    <artifactId>IDL2TangoJavaClient</artifactId>
-    <version>1.1.5-SNAPSHOT</version>
+    <groupId>de.hzg.wpi.xenv</groupId>
+    <artifactId>idl2tango</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <developers>
@@ -47,16 +47,15 @@
     </developers>
 
     <scm>
-        <connection>scm:hg:https://bitbucket.org/hzgwpn/idl2java</connection>
-        <developerConnection>scm:hg:ssh://hg@bitbucket.org/hzgwpn/idl2java</developerConnection>
-        <url>ssh://hg@bitbucket.org/hzgwpn/idl2java</url>
-        <tag>${version}</tag>
+        <connection>scm:git:git@github.com:xenvwpi/${artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:xenvwpi/${artifactId}.git</developerConnection>
+        <url>https://github.com/xenvwpi/${artifactId}</url>
     </scm>
 
     <distributionManagement>
         <repository>
             <id>bintray-hzg</id>
-            <url>https://api.bintray.com/maven/hzgde/hzg-wpn-projects/IDL2Tango</url>
+            <url>https://api.bintray.com/maven/hzgde/maven/${artifactId}/;publish=1</url>
         </repository>
     </distributionManagement>
 
@@ -105,8 +104,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -160,13 +159,34 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
-                    <useReleaseProfile>false</useReleaseProfile>
+                    <useReleaseProfile>true</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>

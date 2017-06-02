@@ -39,7 +39,7 @@ public class IDLDeviceProxyHelper {
 
             for(AttributeInfo attr : attrInfos){
                 TangoDataType<?> type = TangoDataTypes.forTangoDevDataType(attr.data_type);
-                CtClass rt = classPool.makeClass(type.getDataType().getCanonicalName());
+                CtClass rt = classPool.makeClass(type.getDataTypeClass().getCanonicalName());
                 _clazz.addMethod(CtNewMethod.abstractMethod(rt, "get" + attr.name, new CtClass[0], new CtClass[0], _clazz));
             }
 

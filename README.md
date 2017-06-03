@@ -7,7 +7,7 @@
 
 [ ![Download](https://api.bintray.com/packages/hzgde/maven/idl2tango/images/download.svg) ](https://bintray.com/hzgde/maven/idl2tango/_latestVersion)
 
-This project is a part of [X-Environment](http://www.github.com/xenvhzg) (Integrated Control System for High Throughput Tomography experiments). X-Environment is a bunch of components that server two main goals:
+This project is a part of [X-Environment](http://www.github.com/xenvhzg) (Integrated Control System for High-throughput Tomography experiments). X-Environment is a bunch of components that server two main goals:
 
 * Collect data during the High throughput Tomography experiment in a non-disturbing way (does not disturb experiment)
 * Provide high level abstraction for beamline scientist to control the experiment

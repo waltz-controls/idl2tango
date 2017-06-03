@@ -16,7 +16,7 @@ This library corresponds to the second goal.
 
 # Usage
 
-Basic guideline: download, store some where, adjust IDL environment:
+Basic guideline: download, store some where, adjust IDL environment (idljavabrc file):
 
 ```
 

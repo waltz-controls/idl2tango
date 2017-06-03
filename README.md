@@ -7,7 +7,30 @@
 
 [ ![Download](https://api.bintray.com/packages/hzgde/maven/idl2tango/images/download.svg) ](https://bintray.com/hzgde/maven/idl2tango/_latestVersion)
 
-The latest version is 1.1.4 and can be downloaded from [here](https://bintray.com/artifact/download/hzgde/hzg-wpn-projects/hzg/wpn/xenv/IDL2TangoJavaClient/1.1.4/IDL2TangoJavaClient-1.1.4.jar)
+This project is a part of [X-Environment](http://www.github.com/xenvhzg) (Integrated Control System for High Throughput Tomography experiments). X-Environment is a bunch of components that server two main goals:
+
+* Collect data during the High throughput Tomography experiment in a non-disturbing way (does not disturb experiment)
+* Provide high level abstraction for beamline scientist to control the experiment
+
+This library corresponds to the second goal.
+
+# Usage
+
+Basic guideline: download, store some where, adjust IDL environment:
+
+```
+
+# Allow IDL-Java bridge to use .class files located in my CLASSPATH and also the
+# classes found in the examples .jar file shipped with the bridge
+
+JVM Classpath = $CLASSPATH:<path_to_library>/idl2tango-<version>.jar
+```
+
+__NOTE__ remember Windows VS Linux separators (`;` VS `:`) and path delimeters (`\` VS `/`)
+
+See this screenshot:
+
+
 
 # [JavaDoc](http://hzgwpn.bitbucket.org/idl2java/index.html)
 

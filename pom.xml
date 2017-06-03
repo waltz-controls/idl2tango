@@ -47,9 +47,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:xenvwpi/${artifactId}.git</connection>
-        <developerConnection>scm:git:git@github.com:xenvwpi/${artifactId}.git</developerConnection>
-        <url>https://github.com/xenvwpi/${artifactId}</url>
+        <connection>scm:git:git@github.com:xenvhzg/${artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:xenvhzg/${artifactId}.git</developerConnection>
+        <url>https://github.com/xenvhzg/${artifactId}</url>
     </scm>
 
     <distributionManagement>

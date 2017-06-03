@@ -28,7 +28,7 @@ JVM Classpath = $CLASSPATH:<path_to_library>/idl2tango-<version>.jar
 
 __NOTE__ remember Windows VS Linux separators (`;` VS `:`) and path delimeters (`\` VS `/`)
 
-See this screenshot:
+See this code sample:
 
 ![IDL code sample](idlcodesample.png)
 

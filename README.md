@@ -32,5 +32,3 @@ See this code sample:
 
 ![IDL code sample](idlcodesample.png)
 
-# [JavaDoc](http://hzgwpn.bitbucket.org/idl2java/index.html)
-

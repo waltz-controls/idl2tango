@@ -1,9 +1,9 @@
 # IDL2Tango Java bridge
 
-[![Build Status](https://travis-ci.org/xenvwpi/idl2tango.svg?branch=master)](https://travis-ci.org/xenvwpi/idl2tango)
-[![Coverage Status](https://coveralls.io/repos/github/xenvwpi/idl2tango/badge.svg?branch=master)](https://coveralls.io/github/xenvwpi/idl2tango?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/593175e722f278006540a1b6/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/593175e722f278006540a1b6)
-[![codebeat badge](https://codebeat.co/badges/a26bcfef-b0c2-4713-89d8-eaf4534588df)](https://codebeat.co/projects/github-com-xenvwpi-idl2tango-master)
+[![Build Status](https://travis-ci.org/xenvhzg/idl2tango.svg?branch=master)](https://travis-ci.org/xenvhzg/idl2tango)
+[![Coverage Status](https://coveralls.io/repos/github/xenvhzg/idl2tango/badge.svg?branch=master)](https://coveralls.io/github/xenvhzg/idl2tango?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/5932609922f278003c5f8536/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932609922f278003c5f8536)
+[![codebeat badge](https://codebeat.co/badges/f695b1cf-2cd1-4298-a72d-2466444a44c3)](https://codebeat.co/projects/github-com-xenvhzg-idl2tango-master)
 
 [ ![Download](https://api.bintray.com/packages/hzgde/maven/idl2tango/images/download.svg) ](https://bintray.com/hzgde/maven/idl2tango/_latestVersion)
 

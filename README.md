@@ -1,4 +1,4 @@
-# IDL2Tango Java library
+# IDL2Tango Java bridge
 
 [![Build Status](https://travis-ci.org/xenvwpi/idl2tango.svg?branch=master)](https://travis-ci.org/xenvwpi/idl2tango)
 [![Coverage Status](https://coveralls.io/repos/github/xenvwpi/idl2tango/badge.svg?branch=master)](https://coveralls.io/github/xenvwpi/idl2tango?branch=master)

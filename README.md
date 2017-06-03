@@ -12,7 +12,7 @@ This project is a part of [X-Environment](http://www.github.com/xenvhzg) (Integr
 * Collect data during the High throughput Tomography experiment in a non-disturbing way (does not disturb experiment)
 * Provide high level abstraction for beamline scientist to control the experiment
 
-This library corresponds to the second goal.
+This library corresponds to the second goal. It bridges [IDL](http://www.harrisgeospatial.com/ProductsandTechnology/Software/IDL.aspx) and [Tango Control System](http://www.tango-controls.org)
 
 # Usage
 

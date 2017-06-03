@@ -30,7 +30,7 @@ __NOTE__ remember Windows VS Linux separators (`;` VS `:`) and path delimeters (
 
 See this code sample:
 
-![IDL code sample](idlcodesample.png =978x486)
+![IDL code sample](idlcodesample.png)
 
 # [JavaDoc](http://hzgwpn.bitbucket.org/idl2java/index.html)
 

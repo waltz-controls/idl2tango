@@ -43,6 +43,8 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -357,6 +359,17 @@ public class IDLDeviceProxyTest {
         System.out.println(outputType);
         outputType = proxy1.readAttributeString("outputType");
         System.out.println(outputType);
+    }
+
+    //@Test
+    public void testDevEncoded() throws Exception {
+        IDLDeviceProxy uca = new IDLDeviceProxy("tango://hzgxenvtest:10000/development/uca/0");
+
+        BufferedImage image = (BufferedImage) uca.readAttribute("image");
+
+        ImageIO.write(image, "jpeg",
+                Files.createTempFile(Paths.get("/tmp"), "idl_", ".jpeg").toFile()
+        );
     }
 
     //@Test

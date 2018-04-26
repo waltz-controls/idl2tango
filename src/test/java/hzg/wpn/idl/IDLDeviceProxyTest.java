@@ -365,11 +365,9 @@ public class IDLDeviceProxyTest {
     public void testDevEncoded() throws Exception {
         IDLDeviceProxy uca = new IDLDeviceProxy("tango://hzgxenvtest:10000/development/uca/0");
 
-        BufferedImage image = (BufferedImage) uca.readAttribute("image");
+        byte[] image = (byte[]) uca.readAttribute("image");
 
-        ImageIO.write(image, "jpeg",
-                Files.createTempFile(Paths.get("/tmp"), "idl_", ".jpeg").toFile()
-        );
+        Files.write(Files.createTempFile(Paths.get("/tmp"), "idl_", ".jpeg"),image);
     }
 
     //@Test

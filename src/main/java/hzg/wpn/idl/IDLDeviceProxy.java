@@ -212,6 +212,10 @@ public class IDLDeviceProxy {
             awaitor.waitUntil(targetDevState);
             logger.trace("Done waiting.");
         } catch (Exception e) {
+            if(e.getCause() instanceof ReadAttributeException){
+                ReadAttributeException exception = (ReadAttributeException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) waitUntil(state);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -237,6 +241,10 @@ public class IDLDeviceProxy {
             awaitor.waitUntilNot(targetDevState);
             logger.trace("Done waiting.");
         } catch (Exception e) {
+            if(e.getCause() instanceof ReadAttributeException){
+                ReadAttributeException exception = (ReadAttributeException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) waitUntilNot(state);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -264,6 +272,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, null);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -287,6 +299,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -313,6 +329,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getArginType().getSimpleName());
             return proxy.executeCommand(command, converted);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -336,6 +356,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -359,6 +383,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -385,6 +413,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getArginType().getSimpleName());
             return proxy.executeCommand(command, converted);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -411,6 +443,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getArginType().getSimpleName());
             return proxy.executeCommand(command, converted);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -437,6 +473,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getArginType().getSimpleName());
             return proxy.executeCommand(command, converted);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -463,6 +503,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getArginType().getSimpleName());
             return proxy.executeCommand(command, converted);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -486,6 +530,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -509,6 +557,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -532,6 +584,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -555,6 +611,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -578,6 +638,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.executeCommand(command, value);
         } catch (Exception e) {
+            if(e instanceof ExecuteCommandException){
+                ExecuteCommandException exception = (ExecuteCommandException) e.getCause();
+                if(exception.reason.contains("CORBA.TIMEOUT")) return executeCommand(command, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -606,6 +670,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttribute(attname);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -630,6 +698,10 @@ public class IDLDeviceProxy {
         try {
             return proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeFloat(attname);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -654,6 +726,11 @@ public class IDLDeviceProxy {
         try {
             return proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeLong(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -678,6 +755,11 @@ public class IDLDeviceProxy {
         try {
             return proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeShort(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -702,6 +784,11 @@ public class IDLDeviceProxy {
         try {
             return proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeDouble(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -726,6 +813,11 @@ public class IDLDeviceProxy {
         try {
             return (Integer) proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeInteger(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -749,6 +841,11 @@ public class IDLDeviceProxy {
         try {
             return ((DevState) proxy.readAttribute("State")).toString();
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeState();
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -773,6 +870,11 @@ public class IDLDeviceProxy {
         try {
             return (String) proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeString(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -797,6 +899,11 @@ public class IDLDeviceProxy {
         try {
             return (Boolean) proxy.readAttribute(attname);
         } catch (Exception e) {
+            if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) return readAttributeBoolean(attname);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -826,6 +933,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value > 0);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeBoolean(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -849,6 +961,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeBoolean(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -872,6 +989,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, (int)value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeBoolean(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -895,6 +1017,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeLong(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -918,6 +1045,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, (long)value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeULong(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -941,6 +1073,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeLong64(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -964,6 +1101,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttributeULong64(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -991,6 +1133,11 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1017,6 +1164,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1043,6 +1194,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1069,6 +1224,13 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1092,6 +1254,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1118,6 +1284,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1144,6 +1314,10 @@ public class IDLDeviceProxy {
             logger.trace("Target value[={}] of type[={}]", String.valueOf(converted), info.getClazz().getSimpleName());
             proxy.writeAttribute(name, converted);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1167,6 +1341,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1190,12 +1368,19 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
     }
 
-    /**
+    /**        if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
      * Writes a {@link int[]} value to the attribute of the target Tango server.
      * <p/>
      * Usage:
@@ -1213,6 +1398,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1236,6 +1425,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1259,6 +1452,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1285,6 +1482,10 @@ public class IDLDeviceProxy {
             TangoImage<int[]> value = new TangoImage<int[]>(data, width, height);
             proxy.writeAttribute(attrName, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(attrName, data, width, height);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1311,6 +1512,10 @@ public class IDLDeviceProxy {
             TangoImage<double[]> value = new TangoImage<double[]>(data, width, height);
             proxy.writeAttribute(attrName, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(attrName, data, width, height);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1337,6 +1542,10 @@ public class IDLDeviceProxy {
             TangoImage<float[]> value = new TangoImage<float[]>(data, width, height);
             proxy.writeAttribute(attrName, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(attrName, data, width, height);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1360,6 +1569,10 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1383,6 +1596,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1406,6 +1624,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1429,6 +1652,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1452,6 +1680,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1475,6 +1708,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1498,6 +1736,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1521,6 +1764,14 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+              if(e instanceof ReadAttributeException){
+                ReadAttributeException readAttributeException = (ReadAttributeException) e;
+                if(readAttributeException.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1544,6 +1795,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1567,6 +1823,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }
@@ -1590,6 +1851,11 @@ public class IDLDeviceProxy {
         try {
             proxy.writeAttribute(name, value);
         } catch (Exception e) {
+            if(e instanceof WriteAttributeException){
+                WriteAttributeException exception = (WriteAttributeException) e;
+                if(exception.reason.contains("CORBA.TIMEOUT")) writeAttribute(name, value);
+            }
+
             lastException.set(e);
             throw handler.handle(e);
         }

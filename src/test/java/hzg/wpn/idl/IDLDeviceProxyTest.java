@@ -29,6 +29,7 @@
 
 package hzg.wpn.idl;
 
+import fr.esrf.Tango.DevState;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -363,11 +364,43 @@ public class IDLDeviceProxyTest {
 
     //@Test
     public void testDevEncoded() throws Exception {
-        IDLDeviceProxy uca = new IDLDeviceProxy("tango://hzgxenvtest:10000/development/uca/0");
+        IDLDeviceProxy uca = new IDLDeviceProxy("tango://hzgpp05ctcam2:10000/p05/camera/kit");
 
         byte[] image = (byte[]) uca.readAttribute("image");
 
         Files.write(Files.createTempFile(Paths.get("/tmp"), "idl_", ".jpeg"),image);
+    }
+
+    @Test
+    public void test_readAttribute() throws Exception {
+        IDLDeviceProxy statusServer = new IDLDeviceProxy("tango://hzgxenvtest:10000/test/status_server/0");
+
+        for(int i = 0; i<1000; ++i) {
+
+            DevState state = (DevState) statusServer.readAttribute("State");
+            System.out.println(state);
+        }
+
+    }
+
+    @Test
+    public void test_executeCommand() throws Exception {
+        IDLDeviceProxy statusServer = new IDLDeviceProxy("tango://hzgxenvtest:10000/test/status_server/0");
+
+        for(int i = 0; i<1000; ++i) {
+
+            DevState state = (DevState) statusServer.executeCommand("State");
+            System.out.println(state);
+        }
+
+    }
+
+    @Test
+    public void test_waitUntil() throws Exception {
+        IDLDeviceProxy statusServer = new IDLDeviceProxy("tango://hzgxenvtest:10000/test/status_server/0");
+
+            statusServer.waitUntil("ON");
+
     }
 
     //@Test

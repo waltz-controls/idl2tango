@@ -1,11 +1,10 @@
 # IDL2Tango Java bridge
 
-[![Build Status](https://travis-ci.org/xenvhzg/idl2tango.svg?branch=master)](https://travis-ci.org/xenvhzg/idl2tango)
-[![Coverage Status](https://coveralls.io/repos/github/xenvhzg/idl2tango/badge.svg?branch=master)](https://coveralls.io/github/xenvhzg/idl2tango?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/5932609922f278003c5f8536/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932609922f278003c5f8536)
+[![Build Status](https://travis-ci.org/hzg-wpi/idl2tango.svg?branch=master)](https://travis-ci.org/hzg-wpi/idl2tango)
+[![Coverage Status](https://coveralls.io/repos/github/hzg-wpi/idl2tango/badge.svg?branch=master)](https://coveralls.io/github/hzg-wpi/idl2tango?branch=master)
 [![codebeat badge](https://codebeat.co/badges/f695b1cf-2cd1-4298-a72d-2466444a44c3)](https://codebeat.co/projects/github-com-xenvhzg-idl2tango-master)
 
-[ ![Download](https://api.bintray.com/packages/hzgde/maven/idl2tango/images/download.svg) ](https://bintray.com/hzgde/maven/idl2tango/_latestVersion)
+[![Download](https://img.shields.io/github/release/hzg-wpi/idl2tango.svg?style=flat)](https://github.com/hzg-wpi/idl2tango/releases/latest)
 
 This project is a part of [X-Environment](http://www.github.com/xenvhzg) (Integrated Control System for High-throughput Tomography experiments). X-Environment is a bunch of components that server two main goals:
 

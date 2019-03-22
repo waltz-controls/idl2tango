@@ -30,7 +30,9 @@
 package hzg.wpn.idl;
 
 import ch.qos.logback.classic.Level;
-import fr.esrf.Tango.*;
+import fr.esrf.Tango.DevFailed;
+import fr.esrf.Tango.DevSource;
+import fr.esrf.Tango.DevState;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.slf4j.Logger;
 import org.tango.client.ez.data.type.TangoImage;
@@ -222,6 +224,35 @@ public class IDLDeviceProxy {
     }
 
     /**
+     * Blocks current Thread (execution) until target Tango server reports desired state.
+     * State is being checked every 100 milliseconds.
+     * <p/>
+     * Usage:
+     * <p/>
+     * <code>
+     * joDeviceProxy->waitUntil, "running"
+     * </code>
+     *
+     * @param state desired state in String format, i.e. "ON","RUNNING" etc (case insensitive)
+     * @throws RuntimeException
+     */
+    public void waitUntil(String state, long delay) {
+        logger.trace("Waiting until {}/{}", proxy.getName(), state);
+        try {
+            DevState targetDevState = devStates.get(state.toUpperCase());
+            awaitor.waitUntil(targetDevState, delay);
+            logger.trace("Done waiting.");
+        } catch (Exception e) {
+            if (e.getCause() instanceof ReadAttributeException) {
+                ReadAttributeException exception = (ReadAttributeException) e.getCause();
+                if (exception.reason.contains("CORBA.TIMEOUT")) waitUntil(state);
+            }
+            lastException.set(e);
+            throw handler.handle(e);
+        }
+    }
+
+    /**
      * Blocks current Thread (execution) until target Tango server reports state different from the specified.
      * State is being checked every 100 milliseconds.
      * <p/>
@@ -244,6 +275,22 @@ public class IDLDeviceProxy {
             if(e.getCause() instanceof ReadAttributeException){
                 ReadAttributeException exception = (ReadAttributeException) e.getCause();
                 if(exception.reason.contains("CORBA.TIMEOUT")) waitUntilNot(state);
+            }
+            lastException.set(e);
+            throw handler.handle(e);
+        }
+    }
+
+    public void waitUntilNot(String state, long delay) {
+        logger.trace("Waiting until not {}/{}", proxy.getName(), state);
+        try {
+            DevState targetDevState = devStates.get(state.toUpperCase());
+            awaitor.waitUntilNot(targetDevState, delay);
+            logger.trace("Done waiting.");
+        } catch (Exception e) {
+            if (e.getCause() instanceof ReadAttributeException) {
+                ReadAttributeException exception = (ReadAttributeException) e.getCause();
+                if (exception.reason.contains("CORBA.TIMEOUT")) waitUntilNot(state);
             }
             lastException.set(e);
             throw handler.handle(e);

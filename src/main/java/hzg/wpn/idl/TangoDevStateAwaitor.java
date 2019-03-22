@@ -66,6 +66,23 @@ public abstract class TangoDevStateAwaitor {
      */
     public abstract void waitUntilNot(DevState targetState);
 
+    /**
+     * Blocks current thread until device state changes to targetState
+     *
+     * @param targetState wait until the state
+     * @throws RuntimeException
+     */
+    public abstract void waitUntil(DevState targetState, long delay);
+
+    /**
+     * Blocks current thread until the device is in targetState
+     *
+     * @param targetState current device state
+     * @throws RuntimeException
+     */
+    public abstract void waitUntilNot(DevState targetState, long delay);
+
+
     protected boolean targetStateReached(DevState targetState) {
         return crtDevState.get() == targetState;
     }

@@ -29,6 +29,7 @@
 
 package hzg.wpn.idl;
 
+import com.google.common.base.Preconditions;
 import fr.esrf.Tango.DevState;
 import org.tango.client.ez.proxy.*;
 
@@ -47,7 +48,8 @@ public class EventDevStateAwaitor extends TangoDevStateAwaitor {
     }
 
     @Override
-    public void waitUntil(DevState targetState) {
+    public void waitUntil(DevState targetState, long timeout) {
+        Preconditions.checkArgument(timeout > 0L, "timeout can not be less or equal to 0");
         try {
             DevState crtState = getProxy().readAttribute(STATE);
             setCrtDevState(crtState);
@@ -55,7 +57,37 @@ public class EventDevStateAwaitor extends TangoDevStateAwaitor {
             subscribeToStateChange();
             synchronized (internalLock) {
                 while (!targetStateReached(targetState)) {
-                    internalLock.wait();
+                    internalLock.wait(timeout);
+                }
+            }
+            listener = null;
+        } catch (TangoProxyException devFailed) {
+            throw getHandler().handle(devFailed);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw getHandler().handle(error != null ? error : e);
+        } catch (NoSuchAttributeException e) {
+            throw getHandler().handle(e);
+        }
+    }
+
+
+    @Override
+    public void waitUntil(DevState targetState) {
+        waitUntil(targetState, Long.MAX_VALUE);
+    }
+
+    @Override
+    public void waitUntilNot(DevState targetState, long timeout) {
+        Preconditions.checkArgument(timeout > 0L, "timeout can not be less or equal to 0");
+        try {
+            DevState crtState = getProxy().readAttribute(STATE);
+            setCrtDevState(crtState);
+
+            subscribeToStateChange();
+            synchronized (internalLock) {
+                while (targetStateReached(targetState)) {
+                    internalLock.wait(timeout);
                 }
             }
             listener = null;
@@ -71,25 +103,7 @@ public class EventDevStateAwaitor extends TangoDevStateAwaitor {
 
     @Override
     public void waitUntilNot(DevState targetState) {
-        try {
-            DevState crtState = getProxy().readAttribute(STATE);
-            setCrtDevState(crtState);
-
-            subscribeToStateChange();
-            synchronized (internalLock) {
-                while (targetStateReached(targetState)) {
-                    internalLock.wait();
-                }
-            }
-            listener = null;
-        } catch (TangoProxyException devFailed) {
-            throw getHandler().handle(devFailed);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw getHandler().handle(error != null ? error : e);
-        } catch (NoSuchAttributeException e) {
-            throw getHandler().handle(e);
-        }
+        waitUntilNot(targetState, Long.MAX_VALUE);
     }
 
     private void subscribeToStateChange() throws TangoProxyException, NoSuchAttributeException {

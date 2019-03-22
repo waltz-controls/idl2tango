@@ -30,6 +30,7 @@
 package hzg.wpn.idl;
 
 
+import com.google.common.base.Preconditions;
 import fr.esrf.Tango.DevState;
 import org.tango.client.ez.proxy.NoSuchAttributeException;
 import org.tango.client.ez.proxy.TangoProxy;
@@ -43,7 +44,8 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
     public static final long SLEEP_GRANULARITY = 100L;
 
     @Override
-    public void waitUntil(DevState targetState) {
+    public void waitUntil(DevState targetState, long delay) {
+        Preconditions.checkArgument(delay > 0L, "delay can not be less or equal to 0");
         while (true) {
             try {
                 pollCrtState();
@@ -51,7 +53,7 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
                 if (targetStateReached(targetState)) {
                     return;
                 } else {
-                    Thread.sleep(SLEEP_GRANULARITY);
+                    Thread.sleep(delay);
                 }
             } catch (TangoProxyException devFailed) {
                 throw getHandler().handle(devFailed);
@@ -64,13 +66,19 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
         }
     }
 
-    public void waitUntilNot(DevState targetState) {
+    @Override
+    public void waitUntil(DevState targetState) {
+        waitUntil(targetState, SLEEP_GRANULARITY);
+    }
+
+    public void waitUntilNot(DevState targetState, long delay) {
+        Preconditions.checkArgument(delay > 0L, "dealy can not be less or equal to 0");
         while (true) {
             try {
                 pollCrtState();
                 //wait if states are the same
                 if (targetStateReached(targetState)) {
-                    Thread.sleep(SLEEP_GRANULARITY);
+                    Thread.sleep(delay);
                 } else {
                     return;
                 }
@@ -83,6 +91,11 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
                 throw getHandler().handle(e);
             }
         }
+    }
+
+    @Override
+    public void waitUntilNot(DevState targetState) {
+        waitUntilNot(targetState, SLEEP_GRANULARITY);
     }
 
     private void pollCrtState() throws TangoProxyException, NoSuchAttributeException {

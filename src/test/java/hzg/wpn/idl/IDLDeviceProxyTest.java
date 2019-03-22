@@ -32,6 +32,7 @@ package hzg.wpn.idl;
 import fr.esrf.Tango.DevState;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.tango.client.ez.data.type.ImageTangoDataTypes;
 import org.tango.client.ez.data.type.TangoImage;
@@ -384,6 +385,7 @@ public class IDLDeviceProxyTest {
     }
 
     @Test
+    @Ignore
     public void test_executeCommand() throws Exception {
         IDLDeviceProxy statusServer = new IDLDeviceProxy("tango://hzgxenvtest:10000/test/status_server/0");
 

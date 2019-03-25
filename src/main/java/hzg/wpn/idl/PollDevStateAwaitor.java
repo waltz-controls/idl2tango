@@ -41,7 +41,7 @@ import org.tango.client.ez.proxy.TangoProxyException;
  * @since 06.06.12
  */
 public class PollDevStateAwaitor extends TangoDevStateAwaitor {
-    public static final long SLEEP_GRANULARITY = 100L;
+    public static final long SLEEP_GRANULARITY = 10L;
 
     @Override
     public void waitUntil(DevState targetState, long delay) {

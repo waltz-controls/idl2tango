@@ -33,7 +33,7 @@
 
     <groupId>de.hzg.wpi.xenv</groupId>
     <artifactId>idl2tango</artifactId>
-    <version>2.0.5-SNAPSHOT</version>
+    <version>2.1.0</version>
     <packaging>jar</packaging>
 
     <developers>
@@ -50,7 +50,8 @@
         <connection>scm:git:git@github.com:xenvhzg/${artifactId}.git</connection>
         <developerConnection>scm:git:git@github.com:xenvhzg/${artifactId}.git</developerConnection>
         <url>https://github.com/xenvhzg/${artifactId}</url>
-    </scm>
+      <tag>idl2tango-2.1.0</tag>
+  </scm>
 
     <distributionManagement>
         <repository>

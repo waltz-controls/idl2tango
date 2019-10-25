@@ -312,10 +312,10 @@ public class IDLDeviceProxyTest {
 
     //@Test
     public void testAwaitUntil() throws Exception {
-        IDLDeviceProxy instance = new IDLDeviceProxy(TEST_TANGO);
+        IDLDeviceProxy instance = new IDLDeviceProxy("tango://localhost:10000/sys/tg_test/1");
 
         long nanosStart = System.nanoTime();
-        instance.waitUntil("running");
+        instance.waitUntil("running", 3000);
         long nanosEnd = System.nanoTime();
         long awaited = nanosEnd - nanosStart;
         assertTrue(awaited > 409343233);
@@ -324,11 +324,11 @@ public class IDLDeviceProxyTest {
 
     //@Test
     public void testAwaitUntilNot() throws Exception {
-        IDLDeviceProxy instance = new IDLDeviceProxy(TEST_TANGO);
+        IDLDeviceProxy instance = new IDLDeviceProxy("tango://localhost:10000/sys/tg_test/1");
 
         long nanosStart = System.nanoTime();
         //device is started in fault state
-        instance.waitUntilNot("fault");
+        instance.waitUntilNot("fault", 3000);
         long nanosEnd = System.nanoTime();
         long awaited = nanosEnd - nanosStart;
         assertTrue(awaited > 409343233);

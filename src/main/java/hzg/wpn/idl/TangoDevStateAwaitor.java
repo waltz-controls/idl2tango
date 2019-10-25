@@ -42,12 +42,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public abstract class TangoDevStateAwaitor {
     public static final String STATE = "State";
     private final TangoProxy proxy;
-    private final TangoProxyExceptionHandler handler;
     private final AtomicReference<DevState> crtDevState = new AtomicReference<DevState>();
 
-    protected TangoDevStateAwaitor(TangoProxy proxy, TangoProxyExceptionHandler handler) {
+    protected TangoDevStateAwaitor(TangoProxy proxy) {
         this.proxy = proxy;
-        this.handler = handler;
     }
 
     /**
@@ -56,7 +54,7 @@ public abstract class TangoDevStateAwaitor {
      * @param targetState wait until the state
      * @throws RuntimeException
      */
-    public abstract void waitUntil(DevState targetState);
+    public abstract void waitUntil(DevState targetState) throws Exception;
 
     /**
      * Blocks current thread until the device is in targetState
@@ -64,7 +62,7 @@ public abstract class TangoDevStateAwaitor {
      * @param targetState current device state
      * @throws RuntimeException
      */
-    public abstract void waitUntilNot(DevState targetState);
+    public abstract void waitUntilNot(DevState targetState) throws Exception;
 
     /**
      * Blocks current thread until device state changes to targetState
@@ -72,7 +70,15 @@ public abstract class TangoDevStateAwaitor {
      * @param targetState wait until the state
      * @throws RuntimeException
      */
-    public abstract void waitUntil(DevState targetState, long delay);
+    public abstract void waitUntil(DevState targetState, long timeout, long delay) throws Exception;
+
+    /**
+     * Blocks current thread until device state changes to targetState
+     *
+     * @param targetState wait until the state
+     * @throws RuntimeException
+     */
+    public abstract void waitUntil(DevState targetState, long delay) throws Exception;
 
     /**
      * Blocks current thread until the device is in targetState
@@ -80,7 +86,16 @@ public abstract class TangoDevStateAwaitor {
      * @param targetState current device state
      * @throws RuntimeException
      */
-    public abstract void waitUntilNot(DevState targetState, long delay);
+    public abstract void waitUntilNot(DevState targetState, long timeout, long delay) throws Exception;
+
+
+    /**
+     * Blocks current thread until the device is in targetState
+     *
+     * @param targetState current device state
+     * @throws RuntimeException
+     */
+    public abstract void waitUntilNot(DevState targetState, long delay) throws Exception;
 
 
     protected boolean targetStateReached(DevState targetState) {
@@ -93,9 +108,5 @@ public abstract class TangoDevStateAwaitor {
 
     protected TangoProxy getProxy() {
         return proxy;
-    }
-
-    protected TangoProxyExceptionHandler getHandler() {
-        return handler;
     }
 }

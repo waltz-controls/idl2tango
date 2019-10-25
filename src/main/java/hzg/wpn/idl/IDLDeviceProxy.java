@@ -140,9 +140,11 @@ public class IDLDeviceProxy {
      */
     public IDLDeviceProxy(String name, boolean useEventsForWaitUntil) {
         logger.debug("Creating proxy for device[{},useEventsForWaitUntil={}]", name, useEventsForWaitUntil);
+        if (useEventsForWaitUntil)
+            throw handler.handle(new UnsupportedOperationException("useEventsForWaitUntil=true is no longer supported use false"));
         try {
             this.proxy = TangoProxies.newDeviceProxyWrapper(name);
-            this.awaitor = useEventsForWaitUntil ? new EventDevStateAwaitor(this.proxy, handler) : new PollDevStateAwaitor(this.proxy, handler);
+            this.awaitor = new PollDevStateAwaitor(this.proxy, handler);
         } catch (TangoProxyException devFailed) {
             throw handler.handle(devFailed);
         }
@@ -236,11 +238,11 @@ public class IDLDeviceProxy {
      * @param state desired state in String format, i.e. "ON","RUNNING" etc (case insensitive)
      * @throws RuntimeException
      */
-    public void waitUntil(String state, long delay) {
+    public void waitUntil(String state, long timeout) {
         logger.trace("Waiting until {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
-            awaitor.waitUntil(targetDevState, delay);
+            awaitor.waitUntil(targetDevState, timeout, PollDevStateAwaitor.SLEEP_GRANULARITY);
             logger.trace("Done waiting.");
         } catch (Exception e) {
             if (e.getCause() instanceof ReadAttributeException) {
@@ -281,11 +283,11 @@ public class IDLDeviceProxy {
         }
     }
 
-    public void waitUntilNot(String state, long delay) {
+    public void waitUntilNot(String state, long timeout) {
         logger.trace("Waiting until not {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
-            awaitor.waitUntilNot(targetDevState, delay);
+            awaitor.waitUntilNot(targetDevState, timeout, PollDevStateAwaitor.SLEEP_GRANULARITY);
             logger.trace("Done waiting.");
         } catch (Exception e) {
             if (e.getCause() instanceof ReadAttributeException) {

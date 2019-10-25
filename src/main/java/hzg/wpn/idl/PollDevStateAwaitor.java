@@ -36,66 +36,83 @@ import org.tango.client.ez.proxy.NoSuchAttributeException;
 import org.tango.client.ez.proxy.TangoProxy;
 import org.tango.client.ez.proxy.TangoProxyException;
 
+import java.util.concurrent.TimeoutException;
+
 /**
  * @author Igor Khokhriakov <igor.khokhriakov@hzg.de>
  * @since 06.06.12
  */
 public class PollDevStateAwaitor extends TangoDevStateAwaitor {
     public static final long SLEEP_GRANULARITY = 10L;
+    public static final long DEFAULT_TIMEOUT = 30_000L;
+
+    public PollDevStateAwaitor(TangoProxy proxy, TangoProxyExceptionHandler handler) {
+        super(proxy);
+    }
 
     @Override
-    public void waitUntil(DevState targetState, long delay) {
+    public void waitUntil(DevState targetState, long timeout, long delay) throws Exception {
+        Preconditions.checkArgument(timeout > 0L, "timeout can not be less or equal to 0");
         Preconditions.checkArgument(delay > 0L, "delay can not be less or equal to 0");
-        while (true) {
+        long start = System.currentTimeMillis();
+        long tooLate = start + timeout;
+
+
+        while (!Thread.currentThread().isInterrupted()) {
             try {
                 pollCrtState();
                 //do not wait if state are the same
                 if (targetStateReached(targetState)) {
                     return;
+                } else if (tooLate < System.currentTimeMillis()) {
+                    throw new TimeoutException(String.format("Timeout has exceed! %s did not reach state %s within %d ms", getProxy().getName(), targetState, timeout));
                 } else {
                     Thread.sleep(delay);
                 }
-            } catch (TangoProxyException devFailed) {
-                throw getHandler().handle(devFailed);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                throw getHandler().handle(e);
-            } catch (NoSuchAttributeException e) {
-                throw getHandler().handle(e);
+                throw e;
             }
         }
     }
 
     @Override
-    public void waitUntil(DevState targetState) {
-        waitUntil(targetState, SLEEP_GRANULARITY);
+    public void waitUntil(DevState targetState, long delay) throws Exception {
+        waitUntil(targetState, DEFAULT_TIMEOUT, delay);
     }
 
-    public void waitUntilNot(DevState targetState, long delay) {
-        Preconditions.checkArgument(delay > 0L, "dealy can not be less or equal to 0");
-        while (true) {
+    @Override
+    public void waitUntil(DevState targetState) throws Exception {
+        waitUntil(targetState, DEFAULT_TIMEOUT, SLEEP_GRANULARITY);
+    }
+
+    public void waitUntilNot(DevState targetState, long timeout, long delay) throws Exception {
+        Preconditions.checkArgument(timeout > 0L, "timeout can not be less or equal to 0");
+        Preconditions.checkArgument(delay > 0L, "delay can not be less or equal to 0");
+        long start = System.currentTimeMillis();
+        long tooLate = start + timeout;
+
+        while (!Thread.currentThread().isInterrupted()) {
             try {
                 pollCrtState();
                 //wait if states are the same
-                if (targetStateReached(targetState)) {
+                if (tooLate < System.currentTimeMillis()) {
+                    throw new TimeoutException(String.format("Timeout has exceed! %s did not change state %s within %d ms", getProxy().getName(), targetState, timeout));
+                } else if (targetStateReached(targetState)) {
                     Thread.sleep(delay);
                 } else {
                     return;
                 }
-            } catch (TangoProxyException devFailed) {
-                throw getHandler().handle(devFailed);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                throw getHandler().handle(e);
-            } catch (NoSuchAttributeException e) {
-                throw getHandler().handle(e);
+                throw e;
             }
         }
     }
 
     @Override
-    public void waitUntilNot(DevState targetState) {
-        waitUntilNot(targetState, SLEEP_GRANULARITY);
+    public void waitUntilNot(DevState targetState, long timeout) throws Exception {
+        waitUntilNot(targetState, timeout, SLEEP_GRANULARITY);
     }
 
     private void pollCrtState() throws TangoProxyException, NoSuchAttributeException {
@@ -103,7 +120,8 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
         setCrtDevState(crtState);
     }
 
-    public PollDevStateAwaitor(TangoProxy proxy, TangoProxyExceptionHandler handler) {
-        super(proxy, handler);
+    @Override
+    public void waitUntilNot(DevState targetState) throws Exception {
+        waitUntilNot(targetState, DEFAULT_TIMEOUT, SLEEP_GRANULARITY);
     }
 }

@@ -47,9 +47,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:xenvhzg/${artifactId}.git</connection>
-        <developerConnection>scm:git:git@github.com:xenvhzg/${artifactId}.git</developerConnection>
-        <url>https://github.com/xenvhzg/${artifactId}</url>
+        <connection>scm:git:git@github.com:hzg-wpi/${artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:hzg-wpi/${artifactId}.git</developerConnection>
+        <url>https://github.com/hzg-wpi/${artifactId}</url>
       <tag>HEAD</tag>
   </scm>
 

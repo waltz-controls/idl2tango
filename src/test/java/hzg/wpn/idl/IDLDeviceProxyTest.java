@@ -57,6 +57,7 @@ import static org.junit.Assert.assertArrayEquals;
  * @author Igor Khokhriakov <igor.khokhriakov@hzg.de>
  * @since 05.06.12
  */
+@Ignore
 public class IDLDeviceProxyTest {
     public static final String TANGO_DEV_NAME = "test/local/0";
     public static final int TANGO_PORT = 16547;

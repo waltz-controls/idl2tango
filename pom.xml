@@ -47,16 +47,16 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:hzg-wpi/${artifactId}.git</connection>
-        <developerConnection>scm:git:git@github.com:hzg-wpi/${artifactId}.git</developerConnection>
-        <url>https://github.com/hzg-wpi/${artifactId}</url>
+        <connection>scm:git:git@github.com:hereon-wpi/${artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:hereon-wpi/${artifactId}.git</developerConnection>
+        <url>https://github.com/hereon-wpi/${artifactId}</url>
       <tag>idl2tango-2.1.1</tag>
   </scm>
 
     <distributionManagement>
         <repository>
             <id>github-hzg</id>
-            <url>https://maven.pkg.github.com/hzg-wpi/${artifactId}</url>
+            <url>https://maven.pkg.github.com/hereon-wpi/${artifactId}</url>
         </repository>
     </distributionManagement>
 
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>de.hereon.tango</groupId>
             <artifactId>ez</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.6</version>
         </dependency>
         <dependency>
             <groupId>javassist</groupId>
@@ -225,7 +225,7 @@
     <repositories>
         <repository>
             <id>github-hzg</id>
-            <url>https://maven.pkg.github.com/hzg-wpi/*</url>
+            <url>https://maven.pkg.github.com/hereon-wpi/*</url>
         </repository>
     </repositories>
 </project>

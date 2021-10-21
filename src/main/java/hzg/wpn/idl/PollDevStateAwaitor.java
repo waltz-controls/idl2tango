@@ -44,7 +44,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class PollDevStateAwaitor extends TangoDevStateAwaitor {
     public static final long SLEEP_GRANULARITY = 10L;
-    public static final long DEFAULT_TIMEOUT = 30_000L;
+    public static final long DEFAULT_TIMEOUT = Long.MAX_VALUE;
 
     public PollDevStateAwaitor(TangoProxy proxy, TangoProxyExceptionHandler handler) {
         super(proxy);

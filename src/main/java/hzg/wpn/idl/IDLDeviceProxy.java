@@ -210,11 +210,11 @@ public class IDLDeviceProxy {
      * @throws RuntimeException
      */
     public void waitUntil(String state) {
-        logger.trace("Waiting until {}/{}", proxy.getName(), state);
+        logger.debug("Waiting until {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
             awaitor.waitUntil(targetDevState);
-            logger.trace("Done waiting.");
+            logger.debug("Done waiting.");
         } catch (Exception e) {
             if(e.getCause() instanceof ReadAttributeException){
                 ReadAttributeException exception = (ReadAttributeException) e.getCause();
@@ -238,12 +238,12 @@ public class IDLDeviceProxy {
      * @param state desired state in String format, i.e. "ON","RUNNING" etc (case insensitive)
      * @throws RuntimeException
      */
-    public void waitUntil(String state, long timeout) {
-        logger.trace("Waiting until {}/{}", proxy.getName(), state);
+    public void waitUntil(String state, long timeout, long delay) {
+        logger.debug("Waiting until {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
-            awaitor.waitUntil(targetDevState, timeout, PollDevStateAwaitor.SLEEP_GRANULARITY);
-            logger.trace("Done waiting.");
+            awaitor.waitUntil(targetDevState, timeout, delay);
+            logger.debug("Done waiting.");
         } catch (Exception e) {
             if (e.getCause() instanceof ReadAttributeException) {
                 ReadAttributeException exception = (ReadAttributeException) e.getCause();
@@ -268,11 +268,11 @@ public class IDLDeviceProxy {
      * @throws RuntimeException
      */
     public void waitUntilNot(String state) {
-        logger.trace("Waiting until not {}/{}", proxy.getName(), state);
+        logger.debug("Waiting until not {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
             awaitor.waitUntilNot(targetDevState);
-            logger.trace("Done waiting.");
+            logger.debug("Done waiting.");
         } catch (Exception e) {
             if(e.getCause() instanceof ReadAttributeException){
                 ReadAttributeException exception = (ReadAttributeException) e.getCause();
@@ -283,12 +283,12 @@ public class IDLDeviceProxy {
         }
     }
 
-    public void waitUntilNot(String state, long timeout) {
-        logger.trace("Waiting until not {}/{}", proxy.getName(), state);
+    public void waitUntilNot(String state, long timeout, long delay) {
+        logger.debug("Waiting until not {}/{}", proxy.getName(), state);
         try {
             DevState targetDevState = devStates.get(state.toUpperCase());
-            awaitor.waitUntilNot(targetDevState, timeout, PollDevStateAwaitor.SLEEP_GRANULARITY);
-            logger.trace("Done waiting.");
+            awaitor.waitUntilNot(targetDevState, timeout, delay);
+            logger.debug("Done waiting.");
         } catch (Exception e) {
             if (e.getCause() instanceof ReadAttributeException) {
                 ReadAttributeException exception = (ReadAttributeException) e.getCause();

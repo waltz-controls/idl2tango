@@ -73,29 +73,12 @@ public abstract class TangoDevStateAwaitor {
     public abstract void waitUntil(DevState targetState, long timeout, long delay) throws Exception;
 
     /**
-     * Blocks current thread until device state changes to targetState
-     *
-     * @param targetState wait until the state
-     * @throws RuntimeException
-     */
-    public abstract void waitUntil(DevState targetState, long delay) throws Exception;
-
-    /**
      * Blocks current thread until the device is in targetState
      *
      * @param targetState current device state
      * @throws RuntimeException
      */
     public abstract void waitUntilNot(DevState targetState, long timeout, long delay) throws Exception;
-
-
-    /**
-     * Blocks current thread until the device is in targetState
-     *
-     * @param targetState current device state
-     * @throws RuntimeException
-     */
-    public abstract void waitUntilNot(DevState targetState, long delay) throws Exception;
 
 
     protected boolean targetStateReached(DevState targetState) {

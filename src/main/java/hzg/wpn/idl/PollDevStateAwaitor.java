@@ -44,7 +44,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class PollDevStateAwaitor extends TangoDevStateAwaitor {
     public static final long SLEEP_GRANULARITY = 10L;
-    public static final long DEFAULT_TIMEOUT = Long.MAX_VALUE;
+    public static final long DEFAULT_TIMEOUT = 30_000L;
 
     public PollDevStateAwaitor(TangoProxy proxy, TangoProxyExceptionHandler handler) {
         super(proxy);
@@ -77,11 +77,6 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
     }
 
     @Override
-    public void waitUntil(DevState targetState, long delay) throws Exception {
-        waitUntil(targetState, DEFAULT_TIMEOUT, delay);
-    }
-
-    @Override
     public void waitUntil(DevState targetState) throws Exception {
         waitUntil(targetState, DEFAULT_TIMEOUT, SLEEP_GRANULARITY);
     }
@@ -108,11 +103,6 @@ public class PollDevStateAwaitor extends TangoDevStateAwaitor {
                 throw e;
             }
         }
-    }
-
-    @Override
-    public void waitUntilNot(DevState targetState, long timeout) throws Exception {
-        waitUntilNot(targetState, timeout, SLEEP_GRANULARITY);
     }
 
     private void pollCrtState() throws TangoProxyException, NoSuchAttributeException {

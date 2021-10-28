@@ -316,7 +316,7 @@ public class IDLDeviceProxyTest {
         IDLDeviceProxy instance = new IDLDeviceProxy("tango://localhost:10000/sys/tg_test/1");
 
         long nanosStart = System.nanoTime();
-        instance.waitUntil("running", 3000);
+        instance.waitUntil("running", 3000, 100);
         long nanosEnd = System.nanoTime();
         long awaited = nanosEnd - nanosStart;
         assertTrue(awaited > 409343233);
@@ -329,7 +329,7 @@ public class IDLDeviceProxyTest {
 
         long nanosStart = System.nanoTime();
         //device is started in fault state
-        instance.waitUntilNot("fault", 3000);
+        instance.waitUntilNot("fault", 3000, 100);
         long nanosEnd = System.nanoTime();
         long awaited = nanosEnd - nanosStart;
         assertTrue(awaited > 409343233);
